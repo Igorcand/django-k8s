@@ -12,8 +12,17 @@ kubectl apply -f k8s/nginx/deployment.yaml
 
 kubectl exec -it <podname> -- /bin/bash
 
-E0807 05:48:05.029373   12065 memcache.go:265] couldn't get current server API group list: Get "http://localhost:8080/api?timeout=32s": dial tcp 127.0.0.1:8080: connect: connection refused
-The connection to the server localhost:8080 was refused - did you specify the right host or port?
-
-
 https://github.com/codingforentrepreneurs/iac-python
+
+docker login registry.digitalocean.com
+
+dop_v1_936a471ea4dd904dce7334fe9ef1b35be4d845801551bb61138be855dd3cd7eb
+
+docker image push --all-tags registry.digitalocean.com/django--k8s/django-k8s
+
+kubectl create secret generic django-k8s-web-prod-env --from-env-file=web/.env.prod
+
+DIFERENÇAS:
+kubectl get nodes (Não está pegando os nodes no cluster na digital ocean)
+
+kubectl get secrets (Não tem os dois secrests padrão 2:53:30)
